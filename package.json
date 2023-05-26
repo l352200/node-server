@@ -1,0 +1,30 @@
+{
+  "name": "node-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "nodejs示例项目",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js -- "
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "connect-timeout": "^1.7.0",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "mysql2": "^3.0.0-rc.1",
+    "sqlstring": "^2.3.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
