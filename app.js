@@ -28,7 +28,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(timeout('15s'));
 
 app.use("/demo", require('./routes/demoController'));//接口请求示例文件
-app.use("/user", require('./routes/user'));
+app.use("/api", require('./routes/api'));
 
 app.get('/', function (req, res) {
     res.render('index', {
