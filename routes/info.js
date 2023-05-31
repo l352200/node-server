@@ -9,7 +9,7 @@ const DBObj = require("./utils/dbObj");
 router.get('/getNewsList', async function (req,res) {
     // var params = req.query;
     var sql1 = "select * from re_news where type=1 order by createdAt desc limit 0,5"
-    var sql2 = "select count(*) as count from re_news "
+    var sql2 = "select count(*) as count from re_news where type=1 "
     var total = await db.queryOne(sql2)
     console.log(total);
     db.query(sql1).then(ret => {
@@ -48,7 +48,7 @@ router.get('/getNews', async function (req,res) {
 router.get('/getMattersList', async function (req,res) {
     // var params = req.query;
     var sql1 = "select * from re_news where type=2 order by createdAt desc limit 0,5"
-    var sql2 = "select count(*) as count from re_news "
+    var sql2 = "select count(*) as count from re_news where type=2 "
     var total = await db.queryOne(sql2)
     console.log(total);
     db.query(sql1).then(ret => {
