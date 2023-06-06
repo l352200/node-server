@@ -38,7 +38,7 @@ router.get('/getUser', async function (req, res) {
     db.queryOne(sql, args).then(ret => {
         res.json({
             stuUser: ret,
-            code: 200,
+            code: 0,
             permission: ''
         })
     })
