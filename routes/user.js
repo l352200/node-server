@@ -36,6 +36,8 @@ router.get('/getUser', async function (req, res) {
     var sql = "select * from re_user where id=?"
     args = [id]
     db.queryOne(sql, args).then(ret => {
+        req.session.loginUserInfo = ret
+
         res.json({
             stuUser: ret,
             code: 0,
@@ -64,21 +66,21 @@ router.post('/updateUserInfo', async function (req, res) {
         var newUser = new DBObj()
         var text = ""
         if (userInfo.username != ret.username) {
-            text +=" 用户名："+ret.username+" → "+userInfo.username
+            text += " 用户名：" + ret.username + " → " + userInfo.username
         }
         if (userInfo.age != ret.age) {
-            text +=" 年龄："+ret.age+" → "+userInfo.age
+            text += " 年龄：" + ret.age + " → " + userInfo.age
         }
         if (userInfo.sex != ret.sex) {
-            text +=" 性别："+ret.sex+" → "+userInfo.sex
+            text += " 性别：" + ret.sex + " → " + userInfo.sex
         }
         if (userInfo.hobit != ret.hobit) {
-            text +=" 兴趣："+ret.hobit+" → "+userInfo.hobit
+            text += " 兴趣：" + ret.hobit + " → " + userInfo.hobit
         }
         if (!text) {
             res.json({
                 code: -1,
-                msg: '未修改数据无法保存，可以点击取消编辑'     
+                msg: '未修改数据无法保存，可以点击取消编辑'
             })
             return
         }
@@ -89,7 +91,7 @@ router.post('/updateUserInfo', async function (req, res) {
         db.execute("update re_user set ? where id=?", [newUser.format(), id]).then(() => {
             addLogs({
                 userId: id,
-                type: '修改用户信息'+text,
+                type: '修改用户信息' + text,
                 requestUrl: pathname,
                 requestMethod: 'post',
                 requestParams: params,
@@ -105,7 +107,7 @@ router.post('/updateUserInfo', async function (req, res) {
         }).catch((e) => {
             addLogs({
                 userId: id,
-                type: '修改用户信息'+text,
+                type: '修改用户信息' + text,
                 requestUrl: pathname,
                 requestMethod: 'post',
                 requestParams: params,
